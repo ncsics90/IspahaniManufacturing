@@ -13,6 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
+  globalSetup: require.resolve('./global-setup.js'),
   testDir: './tests/testfiles',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -33,10 +34,27 @@ export default defineConfig({
     video: 'retain-on-failure',     // optional: record video of failed tests
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    storageState: 'storageState.json', // reuse session
+
   },
 
   /* Configure projects for major browsers */
   projects: [
+
+    {
+      name: 'suite_one',
+      use: {
+        browserName: 'chromium',  // only Chromium
+        headless: false,          // optional headed mode
+        storageState: 'storageState.json', // reuse session
+        slowMo: 150, // slows actions
+      },
+      testMatch: [
+        'tests/testfiles/login.spec.js',
+        'tests/testfiles/greenLeafReceiving.spec.js',
+      ],
+    },
+
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },

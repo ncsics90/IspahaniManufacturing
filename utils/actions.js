@@ -11,9 +11,23 @@ export async function fillInput(locator, value, fieldName = '') {
   await locator.fill(value);
 }
 
+// Fill input field with a numeric string
+export async function fillInputnumstr(locator, value, fieldName = '') {
+  if (!locator) throw new Error(`Locator is undefined for ${fieldName}`);
+  if (fieldName) console.log(`Filling ${fieldName}:`, value);
+
+  // Convert value to string if number input
+  if ((await locator.getAttribute('type')) === 'number') {
+    value = String(value);
+  }
+
+  await locator.fill(value);
+}
+
 // Click element
 export async function clickElement(locator, elementName = '') {
   if (!locator) throw new Error(`Locator is undefined for ${elementName}`);
+  if (!locator.click) throw new Error(`Passed object is not a Locator for ${elementName}`);
   if (elementName) console.log(`Clicking ${elementName}`);
   await locator.click();
 }
@@ -27,12 +41,27 @@ export async function extractText(locator, fieldName = '') {
   return text ? text.trim() : ''; // remove extra spaces/newlines
 }
 
-
 // Select value from dropdown (by value or visible text)
 export async function selectOption(locator, value, fieldName = '') {
   if (!locator) throw new Error(`Locator is undefined for ${fieldName}`);
   if (fieldName) console.log(`Selecting ${value} in ${fieldName}`);
   await locator.selectOption(value); // can be value, label, or index
+}
+
+// Select Option By Text
+export async function selectOptionByText(selectLocator, optionText, fieldName = '') {
+  if (!selectLocator) throw new Error(`Locator is undefined for ${fieldName}`);  
+  if (fieldName) console.log(`Selecting option "${optionText}" in ${fieldName}`);
+  // Use Playwright's selectOption with label
+  await selectLocator.selectOption({ label: optionText });
+}
+
+// Click By Text
+export async function clickByText(page, text, elementName = '') {
+  if (!page) throw new Error('Page object is required');
+  if (elementName) console.log(`Clicking element with text: "${text}" (${elementName})`);
+  const locator = page.getByText(text, { exact: true }); // exact match
+  await locator.click();
 }
 
 // Tick / untick checkbox
