@@ -1,12 +1,10 @@
-name: Playwright Tests (Chrome)
+name: Playwright Tests (Headless Chrome)
 
 on:
   push:
-    branches:
-      - main   # or replace with your branch name
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   test:
@@ -19,13 +17,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18   # Use Node.js version your project needs
+          node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests in Chrome
-        run: npx playwright test
+      - name: Run Playwright tests (headless Chrome)
+        run: npx playwright test --project=chromium
