@@ -1,6 +1,6 @@
 export const loginData = {
-    baseUrl: 'http://20.198.232.178:9998/signin',
-    username: 'ushani',
+    baseUrl: 'http://20.198.233.3:3555/login',
+    username: 'manofficer',
     password: '12345',
-    expectedUser: 'Ushani Halloluwa'
+    expectedUser: 'Manufaturing Officer'
 };

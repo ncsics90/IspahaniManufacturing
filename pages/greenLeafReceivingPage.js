@@ -17,7 +17,7 @@ export class greenLeafReceiving_page {
         this.greenLeaf_click_field = page.getByRole('button', { name: 'Field *' })
         this.greenLeaf_select_field = page.getByRole('option', { name: '2VP' })
 
-        this.greenLeaf_click_qty = page.getByRole('spinbutton')
+        this.greenLeaf_click_qty = page.locator('//*[@id="root"]/div/div[3]/div/div/div[2]/div/form/div/div/div[2]/div[1]/div[1]/div[4]/div/div/input')
 
         this.greenLeaf_click_date = page.getByRole('button', { name: 'change date' })
         this.greenLeaf_select_date = page.getByRole('button', { name: '20', exact: true })
@@ -60,13 +60,6 @@ export class greenLeafReceiving_page {
         await clickByText(this.greenLeaf_select_division, division, 'Selct Division');
     }
 
-    async clickField() {
-        await clickElement(this.greenLeaf_click_field, 'Click Field');
-    }
-
-    async selectField(field) {
-        await clickByText(this.greenLeaf_select_field, field, 'Selct Field');
-    }
 
     async clickQty() {
         await clickElement(this.greenLeaf_click_qty, 'Click Qty');

@@ -1,18 +1,4 @@
 {
   "cookies": [],
-  "origins": [
-    {
-      "origin": "http://20.198.232.178:9998",
-      "localStorage": [
-        {
-          "name": "iconify-count",
-          "value": "0"
-        },
-        {
-          "name": "iconify-version",
-          "value": "iconify2"
-        }
-      ]
-    }
-  ]
+  "origins": []
 }

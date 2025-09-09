@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Reuse the session from login.spec.js
-test.use({ storageState: 'storageState.json' })
+//test.use({ storageState: 'storageState.json' })
 
 test('Green Leaf Receiving', async ({ page }) => {
   const Green_Leaf = new greenLeafReceiving_page(page);

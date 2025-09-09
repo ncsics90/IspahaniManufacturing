@@ -9,7 +9,7 @@ export class login_page {
         this.username_textbox = page.locator('input[name="username"]')
         this.password_textbox = page.locator('input[name="password"]')
         this.login_button = page.getByRole('button', { name: 'Sign in now' })
-        this.loggedUserLabel = page.locator('//*[@id="root"]/div/div[1]/header/div/div[2]/div[1]/p[1]')
+        this.loggedUserLabel = page.locator('//*[@id="root"]/div/div[1]/header/div/div[3]/h6')
 
     }
 
@@ -34,5 +34,4 @@ export class login_page {
         await expect(this.loggedUserLabel).toBeVisible(); 
         return await extractText(this.loggedUserLabel, 'Logged User Name');
     }
-
 }
